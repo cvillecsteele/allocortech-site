@@ -1758,6 +1758,60 @@ textarea { resize: vertical; min-height: 120px; }
   }
 }
 
+/* ── Product page responsive grids ──────────────────────── */
+.product-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.product-detail-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.product-families-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.product-cta-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .product-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .product-detail-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .product-families-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-cta-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-families-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* ── Homepage responsive grids ───────────────────────────── */
 .differentiators-grid {
   display: grid;
