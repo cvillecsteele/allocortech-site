@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://allocor.tech',
+  site: 'https://wandell.io',
   integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
