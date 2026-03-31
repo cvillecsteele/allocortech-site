@@ -41,7 +41,7 @@ const companies = [
   <!-- Origin Story -->
   <section class="section">
     <div class="container">
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;">
+      <div class="differentiators-grid">
         <div>
           <div class="section-label">01 / Our story</div>
           <h2 style="margin-bottom: 1.5rem;">Founded to fill a gap</h2>
@@ -81,7 +81,7 @@ const companies = [
       <div class="section-label">02 / Differentiation</div>
       <h2 style="margin-bottom: 3rem;">What sets Allocortech apart</h2>
 
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--border-subtle);">
+      <div class="service-tiers-grid" style="border: 1px solid var(--border-subtle);">
         {[
           {
             title: 'Quality of Solutions',
@@ -110,7 +110,7 @@ const companies = [
     <div class="container">
       <div class="section-label">03 / Customer voice</div>
       <h2 style="margin-bottom: 2.5rem;">What our customers say</h2>
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+      <div class="testimonials-grid">
         <blockquote class="testimonial">
           <p class="testimonial-quote">
             "Using Allocortech's avionics hardware and accompanying software stack, we were able to get our prototype electric hydrofoil boat 'flying' in less time than I've ever seen a similarly complex project take flight."
@@ -146,7 +146,7 @@ const companies = [
       <div class="section-label">04 / Team</div>
       <h2 style="margin-bottom: 2.5rem;">The people behind the hardware</h2>
 
-      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--border-subtle);">
+      <div class="service-tiers-grid" style="border: 1px solid var(--border-subtle);">
         {team.map(({ name, title, photo, bio }) => (
           <div style="padding: 2rem; border-right: 1px solid var(--border-subtle);">
             {photo ? (
@@ -167,7 +167,7 @@ const companies = [
 
   <!-- Internship Program -->
   <section class="section">
-    <div class="container" style="display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center;">
+    <div class="container product-cta-grid">
       <div>
         <div class="section-label">05 / Internships</div>
         <h2 style="margin-bottom: 1rem; font-size: clamp(1.5rem, 1.2rem + 1vw, 2.25rem);">Work on hardware that actually flies</h2>

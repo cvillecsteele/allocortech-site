@@ -1758,6 +1758,40 @@ textarea { resize: vertical; min-height: 120px; }
   }
 }
 
+/* ── Contact page grids ──────────────────────────────────── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.contact-name-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-name-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* job-card: stack Apply button below content on mobile */
+@media (max-width: 640px) {
+  .job-card {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ── Applications / Capabilities responsive grids ───────── */
 .applications-grid {
   display: grid;
