@@ -1196,6 +1196,18 @@ textarea { resize: vertical; min-height: 120px; }
   border: 1px solid var(--border-subtle);
 }
 
+@media (max-width: 768px) {
+  .application-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .application-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .application-card {
   position: relative;
   overflow: hidden;
@@ -1248,6 +1260,13 @@ textarea { resize: vertical; min-height: 120px; }
   max-width: var(--container);
   margin-inline: auto;
   width: 100%;
+}
+
+@media (max-width: 900px) {
+  .schematic-panel {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }
 
 .schematic-panel-text {
@@ -1481,6 +1500,12 @@ textarea { resize: vertical; min-height: 120px; }
   grid-template-columns: repeat(4, 1fr);
   gap: 0;
   border: 1px solid var(--border-subtle);
+}
+
+@media (max-width: 768px) {
+  .vehicles-band {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .vehicle-item {
@@ -1730,5 +1755,52 @@ textarea { resize: vertical; min-height: 120px; }
 @media (max-width: 580px) {
   .carousel-track .product-card {
     flex: 0 0 100%;
+  }
+}
+
+/* ── Homepage responsive grids ───────────────────────────── */
+.differentiators-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: stretch;
+}
+
+.hero-stats {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid oklch(100% 0 0 / 0.08);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  width: 100%;
+}
+
+.hero-stat-item {
+  flex: 1 1 0;
+  min-width: 9rem;
+  padding: 0.75rem 1.5rem 0.75rem 0;
+}
+
+@media (max-width: 768px) {
+  .differentiators-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-stat-item {
+    min-width: 7rem;
+    flex: 1 1 calc(50% - 1rem);
   }
 }
