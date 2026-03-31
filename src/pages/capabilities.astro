@@ -1,0 +1,207 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const capabilities = [
+  {
+    title: 'Embedded Software',
+    desc: 'Accelerate your time to market by leveraging Allocortech\'s existing frameworks, integrations, and staff to create new drivers, protocol handlers, state machines, and mission executives.',
+  },
+  {
+    title: 'Electronics',
+    desc: 'Increase flexibility by working closely with Allocortech to specify new or repackaged compute, sensing, actuation, or electromechanical devices that are robust, fault-tolerant, and environmentally qualified.',
+  },
+  {
+    title: 'Electric Powertrains',
+    desc: 'Release your vehicle\'s potential by utilizing Allocortech\'s experience in creating custom battery management, power conversion, power generation, and motor control devices.',
+  },
+  {
+    title: 'Industry-Specific Design',
+    desc: 'Understand the tradeoffs in redundancy strategies and safety domain partitioning through design and review sessions with Allocortech\'s in-house experts. We help develop requirements to identify hardware and software solutions.',
+  },
+  {
+    title: 'Verification & Validation',
+    desc: 'Unlock good testing practices by consulting with Allocortech about requirements and test case development, utilizing our software test toolchain, and having us create hardware test platforms.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Can you mix and match or combine existing solutions?',
+    a: 'Yes. We consider our intellectual property library and in-house knowledge to be our strongest assets. Most custom programs begin with existing Allocortech architectures as a foundation.',
+  },
+  {
+    q: 'What if I need different communications protocols or voltage levels?',
+    a: 'For prototype purposes, we can work with you to determine if there are in-harness or adapter solutions. For production programs, modified-off-the-shelf variants with different voltage or protocol configurations are our most common MOTS engagement.',
+  },
+  {
+    q: 'Can I use Allocortech hardware with other vendors\' systems?',
+    a: 'Allocortech prides itself on having an open software development kit (SDK) that allows you to customize software to your needs. Our products are designed to be interoperable with industry-standard protocols (CAN 2.0, CAN-FD, RS-485, Ethernet).',
+  },
+  {
+    q: 'Can you repackage a product for my specific form factor?',
+    a: 'Yes. Repackaging and re-connectorizing are among our most common MOTS modifications. We also have experience weatherizing solutions by repackaging with environmental connectors and ruggedized enclosures.',
+  },
+  {
+    q: 'Who owns the IP for custom work?',
+    a: 'Allocortech offers both a work-for-hire arrangement (customer owns developed IP) and a shared license model where we negotiate reduced costs for including new modules into our SDK. The right model depends on the program.',
+  },
+  {
+    q: 'Are you on a path to DO-178C or DO-160 certification?',
+    a: 'Allocortech\'s roadmap includes formal certification to DO-160 and DO-178C standards. The Comet FTS is already formally qualified to DO-160G. Other products are designed to DO-160G standards with qualification testing available on request.',
+  },
+  {
+    q: 'Is your hardware American made?',
+    a: 'Yes. Allocortech products contain US-assembled printed circuit boards and all final assembly and testing is performed in Waynesboro, Virginia.',
+  },
+  {
+    q: 'Do you work with international customers?',
+    a: 'Yes. We have several international customers and have developed a robust export process compliant with ITAR and EAR requirements.',
+  },
+  {
+    q: 'What does the engagement process look like?',
+    a: 'For new customers, we provide a limited specification review free of charge to identify the right solution tier (COTS, MOTS, or custom). For first production orders, we typically include a small support contract to support integration activities.',
+  },
+];
+---
+
+<BaseLayout
+  title="Capabilities"
+  description="Allocortech offers COTS, MOTS, and fully custom power electronics and avionics solutions for next-generation vehicle programs."
+>
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-label">Capabilities</div>
+      <h1 style="margin-bottom: 1.25rem;">COTS to fully custom</h1>
+      <p class="lead" style="max-width: 58ch;">
+        Our capabilities span system design, component manufacturing, and software development: from off-the-shelf hardware that ships in weeks to fully custom solutions engineered around your exact requirements.
+      </p>
+    </div>
+  </div>
+
+  <!-- Service Tiers -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label" style="margin-bottom: 2rem;">01 / Service Tiers</div>
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+
+        <div class="capability-tier">
+          <span class="capability-tier-badge">COTS</span>
+          <h3>Off-the-shelf</h3>
+          <p style="font-size: 0.875rem; color: var(--ink-2); line-height: 1.7; max-width: none;">
+            Our commercial-off-the-shelf solutions have been designed to cover a wide range of applications. We currently offer COTS motor controllers, power &amp; communications distribution hubs, and E-Stop / flight termination systems. Ready to ship.
+          </p>
+          <div style="padding-top: 1rem; border-top: 1px solid var(--border-subtle);">
+            <div style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-3); letter-spacing: 0.1em;">Typical delivery</div>
+            <div style="font-family: var(--font-mono); font-size: 0.9rem; color: var(--amber); margin-top: 0.25rem;">Stock to 4 weeks</div>
+          </div>
+        </div>
+
+        <div class="capability-tier" style="border-color: var(--amber);">
+          <span class="capability-tier-badge">MOTS</span>
+          <h3>Modified off-the-shelf</h3>
+          <p style="font-size: 0.875rem; color: var(--ink-2); line-height: 1.7; max-width: none;">
+            MOTS solutions share the same basic architecture as the COTS product they are based on. Modifications typically address different voltage ranges, power output, thermal dissipation, or custom enclosures for specific volume constraints.
+          </p>
+          <div style="padding-top: 1rem; border-top: 1px solid var(--border-subtle);">
+            <div style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-3); letter-spacing: 0.1em;">Typical delivery</div>
+            <div style="font-family: var(--font-mono); font-size: 0.9rem; color: var(--amber); margin-top: 0.25rem;">8–12 weeks</div>
+          </div>
+        </div>
+
+        <div class="capability-tier">
+          <span class="capability-tier-badge">Custom</span>
+          <h3>Fully custom</h3>
+          <p style="font-size: 0.875rem; color: var(--ink-2); line-height: 1.7; max-width: none;">
+            When MOTS isn't sufficient, we work closely with customers to create fully customized solutions. Custom products are often highly application-specific and frequently combine the capabilities of two or more COTS offerings into a single integrated unit.
+          </p>
+          <div style="padding-top: 1rem; border-top: 1px solid var(--border-subtle);">
+            <div style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-3); letter-spacing: 0.1em;">Timeline</div>
+            <div style="font-family: var(--font-mono); font-size: 0.9rem; color: var(--amber); margin-top: 0.25rem;">Program-dependent</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Engineering Capabilities -->
+  <section class="section" style="background: var(--surface); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-label" style="margin-bottom: 2rem;">02 / Engineering Disciplines</div>
+      <h2 style="margin-bottom: 3rem;">What we engineer</h2>
+
+      <div style="display: flex; flex-direction: column; gap: 0;">
+        {capabilities.map((cap, i) => (
+          <div style={`display: grid; grid-template-columns: 3rem 1fr; gap: 2rem; padding: 2rem 0; border-top: 1px solid var(--border-subtle); ${i === capabilities.length - 1 ? 'border-bottom: 1px solid var(--border-subtle);' : ''}`}>
+            <div style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--amber); padding-top: 0.3rem;">
+              {String(i + 1).padStart(2, '0')}
+            </div>
+            <div>
+              <h3 style="font-size: 1.05rem; margin-bottom: 0.5rem;">{cap.title}</h3>
+              <p style="font-size: 0.875rem; color: var(--ink-2); line-height: 1.7;">{cap.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Made in USA callout -->
+  <section class="section-sm">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; padding: 2.5rem; background: var(--surface); border: 1px solid var(--border-subtle);">
+        <div>
+          <div class="section-label" style="margin-bottom: 1rem;">03 / Manufacturing</div>
+          <h2 style="font-size: clamp(1.4rem, 1.1rem + 1vw, 2rem); margin-bottom: 1rem;">American made, from board to box</h2>
+          <p style="font-size: 0.875rem; color: var(--ink-2); line-height: 1.7;">
+            All Allocortech products contain US-assembled printed circuit boards. Final assembly, test, and qualification are performed in Waynesboro, Virginia. We have a robust export process for international customers compliant with ITAR and EAR requirements.
+          </p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 1rem;">
+          {[
+            ['PCB Assembly', 'US manufactured'],
+            ['Final Assembly', 'Waynesboro, Virginia'],
+            ['Test & Qualification', 'In-house facility'],
+            ['Export Compliance', 'ITAR / EAR certified'],
+          ].map(([label, value]) => (
+            <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid var(--border-subtle);">
+              <span style="font-size: 0.78rem; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.08em; font-family: var(--font-mono);">{label}</span>
+              <span style="font-size: 0.875rem; color: var(--ink-2);">{value}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" style="border-top: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-label" style="margin-bottom: 2rem;">04 / FAQ</div>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0 5rem; align-items: start;">
+        <div>
+          <h2 style="margin-bottom: 2.5rem;">Common questions</h2>
+        </div>
+        <div></div>
+        {faqs.map((faq) => (
+          <details style="grid-column: 1 / -1; max-width: 900px;">
+            <summary>{faq.q}</summary>
+            <div class="faq-answer">{faq.a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background: var(--surface); border-top: 1px solid var(--border-subtle); padding-block: clamp(3rem, 6vw, 6rem);">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+      <div>
+        <h3 style="margin-bottom: 0.5rem;">Not sure which path is right?</h3>
+        <p style="color: var(--ink-2); max-width: 52ch;">Our team can walk you through the pros and cons of COTS, MOTS, and custom options for your specific requirements, free of charge for initial consultations.</p>
+      </div>
+      <a href="/contact" class="btn btn-primary" style="flex-shrink: 0;">Talk to Sales</a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,80 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const sorted = posts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const postThumbs: Record<string, string> = {
+  'victor-uas':               '/images/blog/screenshot-1.png',
+  'navier-n30':               '/images/hero/navier-n30-action.webp',
+  'welcome-northrop-grumman': '/images/blog/screenshot-2.png',
+  '2024-banner-year':         '/images/blog/screenshot-3.png',
+  'foc-svpwm':                '/images/blog/screenshot-4.png',
+  '2023-in-review':           '/images/blog/client-milestone-2023.jpg',
+};
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+}
+---
+
+<BaseLayout
+  title="Newsroom"
+  description="The latest from Allocortech: customer milestones, product launches, and technical resources."
+>
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-label">Newsroom</div>
+      <h1 style="margin-bottom: 1rem;">Latest from Allocortech</h1>
+      <p class="lead" style="max-width: 52ch;">
+        Customer milestones, product announcements, and engineering resources.
+      </p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <!-- Featured post -->
+      {sorted[0] && (
+        <a href={`/blog/${sorted[0].id}`} style="text-decoration: none; display: block; margin-bottom: 4rem;">
+          <article style="padding: 3rem; background: var(--surface); border: 1px solid var(--border-subtle); transition: border-color 0.15s;"
+            onmouseover="this.style.borderColor='var(--amber)'" onmouseout="this.style.borderColor='var(--border-subtle)'">
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;">
+              <span class="blog-card-category">{sorted[0].data.category}</span>
+              <span style="color: var(--ink-3); font-size: 0.65rem;">·</span>
+              <span class="blog-card-date">{formatDate(sorted[0].data.date)}</span>
+              <span style="padding: 0.15rem 0.5rem; font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid var(--amber); color: var(--amber);">Latest</span>
+            </div>
+            <h2 style="font-size: clamp(1.4rem, 1.1rem + 1.5vw, 2.25rem); margin-bottom: 1rem; color: var(--ink);">{sorted[0].data.title}</h2>
+            <p style="font-size: 0.95rem; color: var(--ink-2); max-width: 72ch; line-height: 1.7;">{sorted[0].data.excerpt}</p>
+            <div style="margin-top: 1.5rem; font-size: 0.8rem; font-weight: 600; color: var(--amber); letter-spacing: 0.06em; text-transform: uppercase;">Read article →</div>
+          </article>
+        </a>
+      )}
+
+      <!-- Remaining posts -->
+      <div class="blog-grid">
+        {sorted.slice(1).map((post) => (
+          <a href={`/blog/${post.id}`} style="text-decoration: none;">
+            <article class="blog-card">
+              {postThumbs[post.id] && (
+                <div class="blog-card-thumb">
+                  <img src={postThumbs[post.id]} alt={post.data.title} loading="lazy" />
+                </div>
+              )}
+              <div class="blog-card-meta">
+                <span class="blog-card-category">{post.data.category}</span>
+                <span style="color: var(--ink-3); font-size: 0.65rem;">·</span>
+                <span class="blog-card-date">{formatDate(post.data.date)}</span>
+              </div>
+              <h3 class="blog-card-title">{post.data.title}</h3>
+              <p class="blog-card-excerpt">{post.data.excerpt}</p>
+              <div style="margin-top: auto; padding-top: 1rem; font-size: 0.75rem; font-weight: 600; color: var(--amber); letter-spacing: 0.06em; text-transform: uppercase;">Read →</div>
+            </article>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

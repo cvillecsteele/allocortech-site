@@ -1,0 +1,183 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const jobs = [
+  {
+    title: 'Senior In-Process Quality Specialist',
+    department: 'Quality & Operations',
+    level: 'IC3 Senior',
+    location: 'On-Site · Waynesboro, VA',
+    type: 'Full-Time',
+    summary: 'Own the quality gate for all production hardware as we scale toward AS9100 certification. Define IPC-A-610 inspection standards, lead root cause analysis, and build the quality infrastructure for a growing flight-hardware company.',
+    requirements: ['5+ years electronics/aerospace quality', 'IPC-A-610 expertise', 'AS9100/ISO 9001 knowledge', 'SPC and measurement equipment proficiency'],
+  },
+  {
+    title: 'Senior Procurement Specialist',
+    department: 'Operations',
+    level: 'IC3 Senior',
+    location: 'On-Site · Waynesboro, VA',
+    type: 'Full-Time',
+    summary: 'Professionalize the supply chain that supports safety-critical avionics production. Own end-to-end sourcing, MRP/ERP reorder logic, supplier qualification, and negotiation for a company with significant growth momentum.',
+    requirements: ['5+ years procurement in electronics/aerospace', 'MRP/ERP experience (NetSuite, SAP, or Epicor)', 'Strong negotiation skills', 'ITAR/EAR export control familiarity preferred'],
+  },
+  {
+    title: 'Director of People Ops',
+    department: 'People & Culture',
+    level: 'M5 Director',
+    location: 'Hybrid / Remote',
+    type: 'Part-Time / 1099 Contract',
+    summary: 'Build the HR infrastructure Allocortech needs to scale: leveling frameworks, pay bands, structured interview loops, and auditable training records for DO-178C-path personnel. Reports to CEO.',
+    requirements: ['10+ years HR/People Ops', '3+ years Director level', 'Startup/high-growth experience', 'AS9100 Clause 7.2 awareness'],
+  },
+  {
+    title: 'Senior Mechanical Engineer',
+    department: 'Engineering',
+    level: 'IC3 Senior',
+    location: 'On-Site · Waynesboro, VA',
+    type: 'Full-Time',
+    summary: 'Lead mechanical design for avionics enclosures, thermal management systems, and structural mounts for flight hardware. Own technical data packages and support PDR/CDR design reviews on active programs.',
+    requirements: ['5+ years mechanical design', 'Expert SolidWorks/PDM', 'FEA experience (ANSYS/SW Simulation)', 'GD&T per ASME Y14.5', 'BSME required'],
+  },
+  {
+    title: 'Senior Electrical Engineer, Motor Controller Specialist',
+    department: 'Engineering',
+    level: 'IC3 Senior',
+    location: 'On-Site · Waynesboro, VA',
+    type: 'Full-Time',
+    summary: 'Lead integration of PAC55xx series motor controllers with custom inverter hardware. Debug silicon errata/firmware/analog interactions and define motor calibration procedures, addressing the primary technical bottleneck for our Motor Brigade product line.',
+    requirements: ['5+ years embedded motor control / power electronics', 'FOC/sensorless commutation knowledge', 'Register-level motor controller experience', 'PAC55xx direct experience strongly preferred', 'BSEE required'],
+  },
+  {
+    title: 'Senior Electrical Engineer, 800V Inverter Program',
+    department: 'Engineering',
+    level: 'IC3 Senior',
+    location: 'On-Site · Waynesboro, VA',
+    type: 'Full-Time',
+    summary: 'Architect high-voltage power electronics for our 800V inverter program: topology selection, component derating, protection schemes, WCCA, and EMI/EMC design. Lead hardware-software integration and drive impedance-controlled PCB layouts.',
+    requirements: ['5+ years power electronics, emphasis on 400V+ systems', 'Expert Altium/LTspice/MATLAB Simulink', 'WCCA methodology', 'SiC or GaN power stage experience preferred', 'BSEE required'],
+  },
+  {
+    title: 'Junior Electrical Engineer',
+    department: 'Engineering',
+    level: 'IC1 Junior',
+    location: 'On-Site · Waynesboro, VA',
+    type: 'Full-Time',
+    summary: 'Execute and document bench test procedures for 800V inverter hardware, triage production units, and assist BOM management. A direct path into flight hardware engineering with senior mentorship on active programs.',
+    requirements: ['BSEE', 'Bench test equipment proficiency (oscilloscopes, power supplies, electronic loads)', 'Ability to read schematics and PCB drawings'],
+  },
+  {
+    title: 'Staff Test Engineer',
+    department: 'Engineering',
+    level: 'IC4 Staff',
+    location: 'On-Site · Waynesboro, VA',
+    type: 'Full-Time',
+    summary: 'Architect the company-wide test strategy: from R&D HIL/SIL to production EOL testing and formal qualification. Move Allocortech from reactive, artisanal testing to a structured, scalable test infrastructure.',
+    requirements: ['7+ years test engineering', 'HIL/SIL experience for power electronics', 'LabVIEW/Python/NI TestStand proficiency', 'DO-160/MIL-STD experience preferred', 'BSEE/BSME/BSCS required'],
+  },
+  {
+    title: 'Mid-Senior Software Engineer: Avionics',
+    department: 'Engineering Services',
+    level: 'IC2–IC3',
+    location: 'On-Site · Waynesboro, VA',
+    type: 'Full-Time',
+    summary: 'Maintain and enhance avionics software on active programs including camera system firmware, Lidar/vision sensor integration on Nvidia Jetson platforms, and software-only fuel gauge systems for fielded aircraft.',
+    requirements: ['3–7 years embedded C/C++ for real-time systems', 'Camera/vision/sensor integration on embedded Linux', 'JTAG/serial/logic analyzer debugging', 'Nvidia Jetson experience preferred'],
+  },
+  {
+    title: 'Technical Program Manager',
+    department: 'Program Management',
+    level: 'IC4–IC5',
+    location: 'Waynesboro, VA / Hybrid',
+    type: 'Full-Time',
+    summary: 'Lead end-to-end execution of cross-functional engineering programs. Coordinate engineering, manufacturing, and quality. Serve as primary customer contact, manage P&Ls, and keep multiple concurrent programs on schedule.',
+    requirements: ['5+ years complex technical program management', 'Engineering or business degree', 'PMP or Agile/Scrum credentials preferred', 'Aerospace/defense experience preferred'],
+  },
+];
+---
+
+<BaseLayout
+  title="Careers"
+  description="Join Allocortech in Waynesboro, Virginia, building safety-critical avionics and power electronics for next-generation vehicles."
+>
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-label">Careers</div>
+      <h1 style="margin-bottom: 1rem;">Work on hardware that flies</h1>
+      <p class="lead" style="max-width: 58ch;">
+        Allocortech stands on the leading edge of advanced electric and hybrid-electric vehicle development. Work with us and help shape the future of global transportation and logistics.
+      </p>
+    </div>
+  </div>
+
+  <!-- Why Allocortech -->
+  <section class="section-sm" style="border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--border-subtle);">
+        {[
+          { label: 'Small team', desc: 'Your work matters. Every engineer contributes directly to hardware that goes on real programs with real stakes.' },
+          { label: 'Fast pace', desc: 'MOTS solutions in 8–12 weeks. No bureaucracy between a good idea and implementation. Move at startup speed.' },
+          { label: 'Waynesboro, VA', desc: 'Quality of life, proximity to DC/NOVA aerospace corridors, and a growing aerospace ecosystem in the Shenandoah Valley.' },
+        ].map(({ label, desc }) => (
+          <div style="padding: 2rem; border-right: 1px solid var(--border-subtle);">
+            <div style="font-family: var(--font-mono); font-size: 0.65rem; color: var(--amber); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.75rem;">{label}</div>
+            <p style="font-size: 0.875rem; color: var(--ink-2); line-height: 1.65; max-width: none;">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Positions -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label" style="margin-bottom: 0.5rem;">Open Positions</div>
+      <h2 style="margin-bottom: 1rem;">{jobs.length} open roles</h2>
+      <p style="color: var(--ink-2); margin-bottom: 3rem;">All positions based in Waynesboro, Virginia unless noted. To apply, send your resume and a brief note to <a href="mailto:sales@allocor.tech" style="color: var(--amber);">sales@allocor.tech</a>.</p>
+
+      <div style="display: flex; flex-direction: column; gap: 0;">
+        {jobs.map((job) => (
+          <div class="job-card">
+            <div>
+              <h3 style="font-size: clamp(1rem, 0.9rem + 0.4vw, 1.2rem); margin-bottom: 0.5rem;">{job.title}</h3>
+              <div class="job-card-meta">
+                <span class="job-tag">{job.department}</span>
+                <span class="job-tag">{job.level}</span>
+                <span class="job-tag">{job.location}</span>
+                <span class="job-tag">{job.type}</span>
+              </div>
+              <p style="font-size: 0.875rem; color: var(--ink-2); margin-top: 1rem; line-height: 1.6; max-width: 70ch;">{job.summary}</p>
+              <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.4rem;">
+                {job.requirements.map(req => (
+                  <span style="font-size: 0.72rem; color: var(--ink-3); padding: 0.2rem 0; display: flex; align-items: center; gap: 0.4rem;">
+                    <span style="color: var(--amber); font-family: var(--font-mono);">·</span>{req}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div style="flex-shrink: 0;">
+              <a href={`mailto:sales@allocor.tech?subject=Application: ${encodeURIComponent(job.title)}`} class="btn btn-ghost" style="white-space: nowrap; font-size: 0.8rem;">
+                Apply →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Internships -->
+  <section style="background: var(--surface); border-top: 1px solid var(--border-subtle); padding-block: clamp(3rem, 6vw, 6rem);">
+    <div class="container" style="display: grid; grid-template-columns: 1fr auto; gap: 3rem; align-items: center;">
+      <div>
+        <div class="section-label">Internships</div>
+        <h2 style="margin-bottom: 1rem; font-size: clamp(1.4rem, 1.1rem + 1vw, 2rem);">Summer 2026 Engineering Internships</h2>
+        <p style="color: var(--ink-2); max-width: 58ch;">
+          We're seeking undergrad and graduate talent in electrical, computer, mechanical, and software engineering. Interns at Allocortech make meaningful contributions to cutting-edge aerospace projects, not slide decks.
+        </p>
+      </div>
+      <a href="mailto:sales@allocor.tech?subject=Summer 2026 Internship Interest" class="btn btn-outline" style="flex-shrink: 0;">
+        Express Interest
+      </a>
+    </div>
+  </section>
+</BaseLayout>

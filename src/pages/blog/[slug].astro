@@ -1,0 +1,107 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const { title, date, author, category, excerpt } = post.data;
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+}
+
+// More posts
+const allPosts = await getCollection('blog');
+const morePosts = allPosts
+  .filter(p => p.id !== post.id)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+---
+
+<BaseLayout title={title} description={excerpt}>
+  <!-- Back -->
+  <div style="padding-top: 80px; border-bottom: 1px solid var(--border-subtle);">
+    <div class="container" style="padding-block: 1rem;">
+      <a href="/newsroom" style="font-size: 0.8rem; color: var(--ink-3); display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.15s;"
+        onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-3)'">
+        ← Newsroom
+      </a>
+    </div>
+  </div>
+
+  <!-- Article header -->
+  <div style="padding-block: clamp(3rem, 5vw, 5rem); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container" style="max-width: 860px;">
+      <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem;">
+        <span class="blog-card-category">{category}</span>
+        <span style="color: var(--ink-3);">·</span>
+        <span class="blog-card-date">{formatDate(date)}</span>
+        <span style="color: var(--ink-3);">·</span>
+        <span style="font-size: 0.72rem; color: var(--ink-3);">{author}</span>
+      </div>
+      <h1 style="font-size: clamp(1.8rem, 1.4rem + 2.5vw, 3.5rem); margin-bottom: 1.25rem; max-width: 18ch;">{title}</h1>
+      <p style="font-size: 1.05rem; color: var(--ink-2); max-width: 60ch; line-height: 1.65;">{excerpt}</p>
+    </div>
+  </div>
+
+  <!-- Article body -->
+  <article style="padding-block: clamp(2.5rem, 5vw, 5rem);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 280px; gap: 5rem; align-items: start;">
+        <div class="prose">
+          <Content />
+        </div>
+
+        <!-- Sidebar -->
+        <aside style="position: sticky; top: 5rem;">
+          <div style="padding: 1.5rem; background: var(--surface); border: 1px solid var(--border-subtle);">
+            <div style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 1rem;">About the Author</div>
+            <p style="font-size: 0.875rem; color: var(--ink); font-weight: 600; margin-bottom: 0.25rem;">{author}</p>
+            <p style="font-size: 0.8rem; color: var(--ink-2); margin-bottom: 1.5rem;">Allocortech</p>
+
+            <div style="border-top: 1px solid var(--border-subtle); padding-top: 1.25rem;">
+              <div style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.75rem;">Interested in our products?</div>
+              <a href="/contact" class="btn btn-outline" style="width: 100%; justify-content: center;">Talk to Sales</a>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </article>
+
+  <!-- More posts -->
+  {morePosts.length > 0 && (
+    <section style="border-top: 1px solid var(--border-subtle); padding-block: clamp(3rem, 5vw, 5rem);">
+      <div class="container">
+        <div style="margin-bottom: 2.5rem; display: flex; justify-content: space-between; align-items: center;">
+          <h3>More from Allocortech</h3>
+          <a href="/newsroom" class="btn btn-ghost" style="font-size: 0.8rem;">All posts →</a>
+        </div>
+        <div class="blog-grid">
+          {morePosts.map((p) => (
+            <a href={`/blog/${p.id}`} style="text-decoration: none;">
+              <article class="blog-card">
+                <div class="blog-card-meta">
+                  <span class="blog-card-category">{p.data.category}</span>
+                  <span style="color: var(--ink-3); font-size: 0.65rem;">·</span>
+                  <span class="blog-card-date">{formatDate(p.data.date)}</span>
+                </div>
+                <h3 class="blog-card-title">{p.data.title}</h3>
+                <p class="blog-card-excerpt">{p.data.excerpt}</p>
+              </article>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

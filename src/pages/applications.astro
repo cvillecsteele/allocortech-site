@@ -1,0 +1,111 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const applications = [
+  {
+    id: 'uas',
+    title: 'Uncrewed / Optionally Crewed Aircraft',
+    short: 'UAS · eVTOL · Drones',
+    desc: 'Our solutions enable uncrewed aerial systems of various configurations including lift+cruise, tilt-rotor, and tilt-wing. If your UAS is fixed-wing, rotary-wing, or any variation of eVTOL, we ensure it operates at optimum efficiency.',
+    products: ['Taurus AEX', 'Taurus AE', 'Clio Series B', 'Comet FTS', 'Atlas Flight Computer', 'Hornet ADAHRS'],
+    clients: ['Elroy Air', 'Jump Aero', 'Wing', 'Griffon Aerospace'],
+  },
+  {
+    id: 'hybrid',
+    title: 'Hybrid-Powered Systems',
+    short: 'Hybrid-Electric · Generators',
+    desc: 'Our engineering team is uniquely experienced in electric and hybrid-electric powertrain design. We have developed products that provide power distribution, battery management, battery charging, and genset management for complex multi-source power architectures.',
+    products: ['Taurus 400', 'Clio Series B', 'Lohner Smart Battery', 'Battery Tech'],
+    clients: ['Elroy Air', 'Electra.aero'],
+  },
+  {
+    id: 'maritime',
+    title: 'Electric & Uncrewed Watercraft',
+    short: 'Maritime · USV · Hydrofoil',
+    desc: 'Our team can provide custom, marinized versions of our products to power next-generation watercraft of all types. From autonomous surface vehicles to high-performance electric hydrofoils, our Dauphine and Clio platforms provide the C3 and power distribution backbone.',
+    products: ['Dauphine', 'Taurus C60', 'Comet FTS', 'Lohner Smart Battery'],
+    clients: ['Navier', 'US Navy'],
+  },
+  {
+    id: 'evtol',
+    title: 'Advanced Air Mobility / eVTOL',
+    short: 'AAM · eVTOL · Urban Air',
+    desc: 'As air transportation transitions to electric, hybrid-electric, and hydrogen-powered platforms, we provide COTS, MOTS, and custom solutions tailored to the unique requirements of advanced power generating systems, with the acoustic and efficiency performance that urban operations demand.',
+    products: ['Taurus AEX', 'Taurus AE', 'Clio Series B', 'Comet FTS', 'Hornet ADAHRS'],
+    clients: ['Jump Aero', 'Electra.aero'],
+  },
+  {
+    id: 'demonstrators',
+    title: 'Technology Demonstrators',
+    short: 'Rapid Prototyping · Demo Vehicles',
+    desc: 'We work with next-generation vehicle developers to provide the power electronics they need to get prototypes from design to demonstration in minimal time. If you are on a compressed development timeline, Allocortech experts can help you meet seemingly unachievable deadlines.',
+    products: ['Taurus AE', 'Clio Series B', 'Atlas Flight Computer'],
+    clients: ['PteroDynamics', 'Multiple startup programs'],
+  },
+  {
+    id: 'defense',
+    title: 'Aerospace & Defense',
+    short: 'Defense · Group 3 UAS · Military',
+    desc: 'Our solutions are trusted by major aerospace and defense OEMs for demanding programs requiring DO-160G qualified hardware, EMI-hardened systems, and engineering teams that operate at the pace defense programs require.',
+    products: ['Taurus 400', 'Lohner Smart Battery', 'Atlas Flight Computer', 'Comet FTS'],
+    clients: ['Northrop Grumman', 'Griffon Aerospace', 'US Army', 'US Navy'],
+  },
+];
+---
+
+<BaseLayout
+  title="Applications"
+  description="Allocortech solutions are trusted by aerospace and defense OEMs across uncrewed aircraft, eVTOL, maritime autonomy, and defense applications."
+>
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-label">Applications</div>
+      <h1 style="margin-bottom: 1.25rem;">Air · Land · Sea · Space</h1>
+      <p class="lead" style="max-width: 60ch;">
+        Allocortech solutions are trusted by some of the most prominent aerospace and defense OEMs developing advanced vehicles spanning all domains.
+      </p>
+    </div>
+  </div>
+
+  <!-- Application Cards -->
+  <section class="section">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border: 1px solid var(--border-subtle);">
+        {applications.map((app, i) => (
+          <div id={app.id} style={`padding: 2.5rem; border-right: ${i % 2 === 0 ? '1px' : '0'} solid var(--border-subtle); border-bottom: ${i < applications.length - 2 ? '1px' : '0'} solid var(--border-subtle);`}>
+            <div style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.75rem;">{app.short}</div>
+            <h2 style="font-size: clamp(1.1rem, 1rem + 0.5vw, 1.5rem); margin-bottom: 1rem;">{app.title}</h2>
+            <p style="font-size: 0.875rem; color: var(--ink-2); line-height: 1.7; margin-bottom: 1.5rem; max-width: none;">{app.desc}</p>
+
+            <div style="margin-bottom: 1.25rem;">
+              <div style="font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.6rem;">Relevant Products</div>
+              <div style="display: flex; flex-wrap: wrap; gap: 0.4rem;">
+                {app.products.map((p) => (
+                  <span class="tag">{p}</span>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <div style="font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 0.6rem;">Customers</div>
+              <div style="font-size: 0.8rem; color: var(--ink-2);">{app.clients.join(' · ')}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section style="background: var(--surface); border-top: 1px solid var(--border-subtle); padding-block: clamp(3rem, 6vw, 6rem);">
+    <div class="container" style="text-align: center; max-width: 640px; margin-inline: auto;">
+      <div class="section-label" style="justify-content: center;">Let's talk about your program</div>
+      <h2 style="margin-bottom: 1rem;">Don't see your application?</h2>
+      <p style="color: var(--ink-2); margin-bottom: 2rem;">
+        If your program doesn't fit neatly into one of these categories, that's exactly the kind of challenge we like. Tell us what you're building.
+      </p>
+      <a href="/contact" class="btn btn-primary">Get in Touch</a>
+    </div>
+  </section>
+</BaseLayout>

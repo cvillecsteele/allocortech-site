@@ -1,0 +1,183 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+const team = [
+  {
+    name: 'Brian Viele',
+    title: 'CTO & Co-Founder',
+    photo: '/images/team/brian-viele.png',
+    bio: 'Co-founded Allocortech in 2018 with a vision for a nimble avionics company capable of serving UAS and UAM markets that demand commercial quality without legacy supplier lead times and inflexibility.',
+  },
+  {
+    name: 'Matt Walker',
+    title: 'CTO & Co-Founder',
+    photo: '/images/team/matt-walker.png',
+    bio: 'Co-founded Allocortech in 2018 alongside Brian Viele. Brings deep expertise in embedded systems, power electronics, and safety-critical avionics development for next-generation vehicle programs.',
+  },
+];
+
+const companies = [
+  'Northrop Grumman', 'Griffon Aerospace', 'Wing', 'Navier', 'Elroy Air',
+  'Jump Aero', 'Electra.aero', 'PteroDynamics',
+];
+---
+
+<BaseLayout
+  title="About"
+  description="Allocortech was founded in 2018 in Waynesboro, Virginia by avionics engineers who saw what the UAS and eVTOL markets needed but weren't getting from legacy suppliers."
+>
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <img src="/images/logos/logo-grey.webp" alt="" aria-hidden="true" class="page-hero-bg" />
+    <div class="container">
+      <div class="section-label">About</div>
+      <h1 style="margin-bottom: 1.25rem;">Small team.<br>Serious hardware.</h1>
+      <p class="lead" style="max-width: 58ch;">
+        Allocortech is a small and agile technical company providing expertise and products for avionics, control systems, and embedded systems across the full spectrum of next-generation vehicles.
+      </p>
+    </div>
+  </div>
+
+  <!-- Origin Story -->
+  <section class="section">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;">
+        <div>
+          <div class="section-label">01 / Our story</div>
+          <h2 style="margin-bottom: 1.5rem;">Founded to fill a gap</h2>
+          <div style="color: var(--ink-2); line-height: 1.8; font-size: 0.95rem; display: flex; flex-direction: column; gap: 1.25rem;">
+            <p>
+              Founded in 2018, Brian Viele and Matt Walker envisioned a nimble avionics company that could provide services and products to UAS and UAM aircraft markets that demand commercial quality but cannot tolerate the lead times, lack of flexibility, and recurring costs of legacy commercial aerospace solutions.
+            </p>
+            <p>
+              Based in central Virginia, near the major aerospace corridors of Northern Virginia, Allocortech has quickly gained a reputation for delivering high-quality fault-tolerant solutions within demanding customer-driven deadlines.
+            </p>
+            <p>
+              Every product in our catalog was born from a real customer requirement. Our intellectual property library and in-house engineering knowledge base are our strongest assets, built from real hardware delivered to real programs under real schedule pressure.
+            </p>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border-subtle);">
+          {[
+            ['2018', 'Founded in Waynesboro, Virginia'],
+            ['2023', 'Powered 6 major industry milestones'],
+            ['2024', '50%+ revenue growth, 256% product sales surge'],
+            ['Present', 'Serving aerospace & defense OEMs globally'],
+          ].map(([year, desc]) => (
+            <div style="display: grid; grid-template-columns: 6rem 1fr; gap: 1.5rem; padding: 1.5rem 2rem; border-bottom: 1px solid var(--border-subtle);">
+              <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--amber); padding-top: 0.15rem;">{year}</div>
+              <div style="font-size: 0.875rem; color: var(--ink-2);">{desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Sets Us Apart -->
+  <section class="section" style="background: var(--surface); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-label">02 / Differentiation</div>
+      <h2 style="margin-bottom: 3rem;">What sets Allocortech apart</h2>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--border-subtle);">
+        {[
+          {
+            title: 'Quality of Solutions',
+            body: 'Our engineering team has vast experience creating power electronics and uses only high-quality subcomponents with high MTBF values. Every design decision is made with the understanding that our hardware flies, and failures are not an option.',
+          },
+          {
+            title: 'Quick Lead Times',
+            body: 'Our team is small, but mighty, and can meet deadlines that large, bureaucratic organizations have trouble meeting. New or custom designs based on existing architectures can be completed in weeks rather than months. MOTS solutions typically deliver in 8–12 weeks.',
+          },
+          {
+            title: 'Unmatched Support',
+            body: 'Customers value our ability to provide support at a moment\'s notice. We are incredibly flexible when it comes to engineering changes and follow-on projects. When something needs to change, we treat it as a normal part of the program, not a contract modification.',
+          },
+        ].map(({ title, body }) => (
+          <div style="padding: 2.5rem 2rem; border-right: 1px solid var(--border-subtle);">
+            <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">{title}</h3>
+            <p style="font-size: 0.875rem; color: var(--ink-2); line-height: 1.7; max-width: none;">{body}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section">
+    <div class="container">
+      <div class="section-label">03 / Customer voice</div>
+      <h2 style="margin-bottom: 2.5rem;">What our customers say</h2>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <blockquote class="testimonial">
+          <p class="testimonial-quote">
+            "Using Allocortech's avionics hardware and accompanying software stack, we were able to get our prototype electric hydrofoil boat 'flying' in less time than I've ever seen a similarly complex project take flight."
+          </p>
+          <footer style="display: flex; align-items: center; gap: 0.75rem;">
+            <img src="/images/team/kenny-jensen-avatar.webp" alt="Dr. Kenny Jensen" loading="lazy" style="width: 2.5rem; height: 2.5rem; border-radius: 50%; object-fit: cover; filter: grayscale(0.2); flex-shrink: 0;" />
+            <div>
+              <div class="testimonial-author">Dr. Kenny Jensen</div>
+              <div class="testimonial-role">Lead Flight Control Engineer, Navier</div>
+            </div>
+          </footer>
+        </blockquote>
+        <blockquote class="testimonial">
+          <p class="testimonial-quote">
+            "Allocortech has been an ideal partner in development of our advanced UAS platforms. They uniquely act as an extension to your existing engineering enterprise and ensure that their products meet your needs. The Allocortech team is both technically excellent and agile enough to provide bespoke solutions for fast-paced programs."
+          </p>
+          <footer style="display: flex; align-items: center; gap: 0.75rem;">
+            <img src="/images/team/jordan-french.webp" alt="Jordan French" loading="lazy" style="width: 2.5rem; height: 2.5rem; border-radius: 50%; object-fit: cover; filter: grayscale(0.2); flex-shrink: 0;" />
+            <div>
+              <div class="testimonial-author">Jordan French, PhD</div>
+              <div class="testimonial-role">Valiant Program Manager, Griffon Aerospace</div>
+            </div>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Team -->
+  <section class="section" style="background: var(--surface); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-label">04 / Team</div>
+      <h2 style="margin-bottom: 2.5rem;">The people behind the hardware</h2>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--border-subtle);">
+        {team.map(({ name, title, photo, bio }) => (
+          <div style="padding: 2rem; border-right: 1px solid var(--border-subtle);">
+            {photo ? (
+              <img src={photo} alt={name} loading="lazy" style="width: 56px; height: 56px; border-radius: 50%; object-fit: cover; filter: grayscale(0.2); margin-bottom: 1.25rem; display: block;" />
+            ) : (
+              <div style="width: 48px; height: 48px; background: var(--raised); border: 1px solid var(--border); margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: center;">
+                <span style="font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; color: var(--amber);">{name[0]}</span>
+              </div>
+            )}
+            <h3 style="font-size: 1.1rem; margin-bottom: 0.25rem;">{name}</h3>
+            <p style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--amber); letter-spacing: 0.08em; margin-bottom: 1rem;">{title}</p>
+            <p style="font-size: 0.875rem; color: var(--ink-2); line-height: 1.65; max-width: none;">{bio}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Internship Program -->
+  <section class="section">
+    <div class="container" style="display: grid; grid-template-columns: 1fr auto; gap: 4rem; align-items: center;">
+      <div>
+        <div class="section-label">05 / Internships</div>
+        <h2 style="margin-bottom: 1rem; font-size: clamp(1.5rem, 1.2rem + 1vw, 2.25rem);">Work on hardware that actually flies</h2>
+        <p style="color: var(--ink-2); max-width: 58ch;">
+          Allocortech designs and manufactures safety-critical flight control systems for next-gen UAS and UAM aircraft in a fast-paced, small-team environment where interns make meaningful contributions to cutting-edge aerospace projects. We're seeking undergrad and grad talent in electrical, computer, mechanical, and software engineering.
+        </p>
+      </div>
+      <div style="flex-shrink: 0;">
+        <a href="/careers" class="btn btn-outline">View Opportunities</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

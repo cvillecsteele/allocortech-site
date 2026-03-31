@@ -1,0 +1,593 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const allProducts = await getCollection('products');
+const featuredProducts = allProducts
+  .filter(p => p.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const applications = [
+  { domain: 'Uncrewed / Optionally Crewed Aircraft', desc: 'UAS of all configurations — lift+cruise, tilt-rotor, fixed-wing, VTOL. FOC/SVPWM motor controllers and full avionics stacks for every airframe.', img: '/images/applications/application-1.webp' },
+  { domain: 'Hybrid-Powered Systems',               desc: 'Electric and hybrid-electric powertrain expertise across power distribution, battery management, and charging for air, land, and sea platforms.', img: '/images/applications/application-2.webp' },
+  { domain: 'Electric & Legacy Watercraft',          desc: 'Marinized power distribution, motor controllers, and C3 hubs for next-generation electric vessels and hybrid maritime platforms.', img: '/images/applications/application-3.webp' },
+  { domain: 'Technology Demonstrators',              desc: 'Accelerated prototype timelines using proven power electronics IP. From first-article hardware to flight-test-ready systems in weeks.', img: '/images/applications/application-4.webp' },
+  { domain: 'Advanced Air Mobility / eVTOL',         desc: 'COTS, MOTS, and custom solutions for electric and hydrogen-powered urban air mobility platforms with demanding SWaP and certification requirements.', img: '/images/applications/application-5.webp' },
+  { domain: 'Uncrewed / Optionally Crewed Watercraft', desc: 'Maritime platform solutions including e-stop systems trusted on US Navy programs, plus power distribution and motor control for USVs and UUVs.', img: '/images/applications/application-6.webp' },
+];
+
+const productCardImages: Record<string, string> = {
+  'taurus-400': '/images/products/taurus-400-nobg.webp',
+  'taurus-ae':  '/images/products/taurus-ae.webp',
+  'taurus-aex': '/images/products/taurus-aex.webp',
+  'taurus-c60': '/images/products/taurus-c60.webp',
+  'clio':       '/images/products/clio.webp',
+  'comet-fts':  '/images/products/comet-fts.webp',
+  'atlas':      '/images/products/atlas.webp',
+  'dauphine':   '/images/products/dauphine.webp',
+  'lohner':     '/images/products/lohner.webp',
+  'hornet':     '/images/products/hornet.webp',
+};
+
+const partners = [
+  { name: 'Elroy Air',         logo: '/images/partners/elroy-air.webp' },
+  { name: 'Whisper Aero',      logo: '/images/partners/whisper-aero.webp' },
+  { name: 'Griffon Aerospace', logo: '/images/partners/griffon.webp' },
+  { name: 'Aerovel',           logo: '/images/partners/aerovel.webp' },
+  { name: 'Navier',            logo: '/images/partners/navier.webp' },
+  { name: 'PteroDynamics',     logo: '/images/partners/pterodynamics.webp' },
+  { name: 'Electra',           logo: '/images/partners/electra.webp' },
+  { name: 'Joby Aviation',     logo: '/images/partners/joby.webp' },
+  { name: 'BAE Systems',       logo: '/images/partners/bae-systems.webp', invert: true },
+  { name: 'Skyways',           logo: '/images/partners/skyways.webp' },
+];
+
+const vehicles = [
+  { name: 'Electra EL-2 Goldfinch', img: '/images/vehicles/electra-goldfinch.webp' },
+  { name: 'Regent Squire',          img: '/images/vehicles/regent-squire.webp' },
+  { name: 'XP-4',                   img: '/images/vehicles/xp-4.webp' },
+  { name: 'Katana',                 img: '/images/vehicles/katana.webp' },
+];
+
+const stats = [
+  { value: '50%+',   label: 'Revenue growth, 2024',    icon: '/images/icons/shipment.svg' },
+  { value: '256%',   label: 'Product sales surge, 2024', icon: '/images/icons/trophy.svg' },
+  { value: '300K+',  label: 'Wing deliveries powered', icon: '/images/icons/history.svg' },
+{ value: '95%+',   label: 'On-time delivery rate',  icon: '/images/icons/power.webp' },
+];
+
+---
+
+<BaseLayout
+  title="Home"
+  description="Safety-critical power electronics, motor controllers, and avionics systems for next-generation air, land, sea, and space vehicles."
+>
+  <!-- ── Hero ──────────────────────────────────────────── -->
+  <section class="hero">
+    <video
+      class="hero-video"
+      autoplay loop muted playsinline
+      poster="https://cdn.prod.website-files.com/6862be609b8104b1f6d09708%2F697bd671012f339e06724627_allocortech%20Landing%20Page%20Hero%20%28smaller%29%20%281%29_poster.0000000.jpg"
+      aria-hidden="true"
+    >
+      <source src="https://cdn.prod.website-files.com/6862be609b8104b1f6d09708%2F697bd671012f339e06724627_allocortech%20Landing%20Page%20Hero%20%28smaller%29%20%281%29_mp4.mp4" type="video/mp4" />
+      <source src="https://cdn.prod.website-files.com/6862be609b8104b1f6d09708%2F697bd671012f339e06724627_allocortech%20Landing%20Page%20Hero%20%28smaller%29%20%281%29_webm.webm" type="video/webm" />
+    </video>
+    <div class="hero-grad-top" aria-hidden="true"></div>
+    <div class="hero-grad-bottom" aria-hidden="true"></div>
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="hero-vignette" aria-hidden="true"></div>
+    <div class="hero-reticle" aria-hidden="true">
+      <div class="hero-reticle-circle"></div>
+    </div>
+
+    <div class="container hero-content" style="padding-top: 2rem; padding-bottom: 4rem;">
+      <div style="max-width: 800px;" class="hero-text-delayed">
+        <div class="hero-badge fade-up">
+          <span class="hero-badge-dot" aria-hidden="true"></span>
+          Taurus AEX Motor Controller: Now Available
+        </div>
+
+        <div class="hero-eyebrow fade-up">
+          Power Electronics · Avionics · Virginia, USA
+        </div>
+
+        <h1 class="fade-up" style="font-size: clamp(2.8rem, 2rem + 4.5vw, 6.5rem); font-weight: 700; letter-spacing: -0.04em; line-height: 0.97; margin-bottom: 1.5rem;">
+          Building a<br><span class="amber">next-gen</span><br>vehicle platform?
+        </h1>
+
+        <p class="lead fade-up" style="max-width: 52ch;">
+          When reliability is non-negotiable and performance makes all the difference, our power system solutions lead the way in uncrewed systems, critical maritime operations, and aerospace &amp; defense.
+        </p>
+
+        <div class="hero-ctas fade-up">
+          <a href="/contact" class="btn btn-primary">Talk to Sales</a>
+          <a href="/products" class="btn btn-ghost">View Products</a>
+        </div>
+      </div>
+
+      <div class="fade-up" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid oklch(100% 0 0 / 0.08); display: flex; flex-wrap: wrap; gap: 0; width: 100%;">
+        {stats.map(({ value, label, icon }) => (
+          <div style="flex: 1 1 0; min-width: 9rem; padding: 0.75rem 1.5rem 0.75rem 0;">
+            <img src={icon} alt="" class="hero-stat-icon" aria-hidden="true" />
+            <div style="font-family: var(--font-mono); font-size: clamp(1rem, 0.85rem + 0.8vw, 1.4rem); font-weight: 500; color: #fff; white-space: nowrap;">{value}</div>
+            <div style="font-size: 0.68rem; color: rgba(255,255,255,0.6); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 0.2rem; max-width: 18ch; line-height: 1.4;">{label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Partner Marquee ───────────────────────────────── -->
+  <div class="marquee-band" aria-hidden="true">
+    <div class="marquee-track">
+      {/* Two copies for seamless loop */}
+      {[...partners, ...partners].map(({ name, logo, invert }) => (
+        <img src={logo} alt={name} loading="lazy" data-invert={invert || undefined} />
+      ))}
+    </div>
+  </div>
+
+  <!-- ── Products ──────────────────────────────────────── -->
+  <section class="section" style="padding-top: 5rem;">
+    <div class="container">
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 3rem;">
+        <div>
+          <div class="section-label">01 / Products</div>
+          <h2>What we make</h2>
+        </div>
+        <a href="/products" class="btn btn-ghost" style="white-space: nowrap; flex-shrink: 0;">All products →</a>
+      </div>
+
+      <div class="product-carousel" id="product-carousel" style="--carousel-duration: 5000ms;">
+        <div class="carousel-track-wrap">
+          <div class="carousel-track" id="carousel-track">
+            {featuredProducts.map((product) => (
+              <a href={`/products/${product.id}`} class="product-card">
+                {productCardImages[product.id] && (
+                  <div class="product-card-img-wrap">
+                    <img src={productCardImages[product.id]} alt={product.data.title} class="product-card-img" loading="lazy" />
+                  </div>
+                )}
+                <div class="product-card-category">{product.data.category}</div>
+                <div class="product-card-name">{product.data.title}</div>
+                <p class="product-card-tagline">{product.data.tagline}</p>
+                <div class="product-card-specs">
+                  {product.data.keySpecs.slice(0, 3).map((spec) => (
+                    <div class="product-card-spec">
+                      <span class="product-card-spec-label">{spec.label}</span>
+                      <span class="product-card-spec-value">{spec.value}</span>
+                    </div>
+                  ))}
+                </div>
+                <div class="product-card-link">View specs <span aria-hidden="true">→</span></div>
+              </a>
+            ))}
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="carousel-prev" aria-label="Previous">←</button>
+          <div class="carousel-indicators" id="carousel-dots"></div>
+          <button class="carousel-btn" id="carousel-next" aria-label="Next">→</button>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const carousel = document.getElementById('product-carousel') as HTMLElement | null;
+          const track    = document.getElementById('carousel-track') as HTMLElement | null;
+          const dotsWrap = document.getElementById('carousel-dots') as HTMLElement | null;
+          if (!carousel || !track || !dotsWrap) return;
+
+          const cards    = Array.from(track.querySelectorAll<HTMLElement>('.product-card'));
+          const DURATION = 5000; // ms — single source of truth for both JS timer and CSS animation
+
+          // Keep CSS variable in sync so the animation duration matches exactly
+          carousel.style.setProperty('--carousel-duration', DURATION + 'ms');
+
+          function visibleCount() {
+            const w = window.innerWidth;
+            if (w <= 580) return 1;
+            if (w <= 900) return 2;
+            return 3;
+          }
+
+          let current = 0;
+          let timer: ReturnType<typeof setTimeout> | null = null;
+
+          function maxIndex() { return Math.max(0, cards.length - visibleCount()); }
+
+          function cardStride() {
+            // Width of one card slot (card width + gap). Measure after layout.
+            const w = cards[0]?.offsetWidth ?? 0;
+            return w + 1; // 1px gap
+          }
+
+          function translate(idx: number) {
+            track.style.transform = `translateX(-${idx * cardStride()}px)`;
+          }
+
+          // Force CSS animation restart on the active dot
+          function activateDot(dot: Element) {
+            dot.classList.remove('active');
+            // Void read forces a style reflow so the browser treats the re-add as fresh
+            void (dot as HTMLElement).offsetWidth;
+            dot.classList.add('active');
+          }
+
+          function updateDots() {
+            dotsWrap.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+              if (i === current) {
+                activateDot(dot);
+              } else {
+                dot.classList.remove('active');
+              }
+            });
+          }
+
+          function goTo(idx: number, resetAuto = false) {
+            current = Math.max(0, Math.min(idx, maxIndex()));
+            translate(current);
+            updateDots();
+            if (resetAuto) scheduleNext();
+          }
+
+          function advance() {
+            current = current >= maxIndex() ? 0 : current + 1;
+            translate(current);
+            updateDots();
+            scheduleNext();
+          }
+
+          // Use setTimeout (not setInterval) so each tick is scheduled fresh —
+          // eliminates accumulated drift and makes pause/resume trivially exact.
+          function scheduleNext() {
+            if (timer) clearTimeout(timer);
+            timer = setTimeout(advance, DURATION);
+          }
+
+          function pause() {
+            if (timer) { clearTimeout(timer); timer = null; }
+          }
+
+          function buildDots() {
+            dotsWrap.innerHTML = '';
+            const count = maxIndex() + 1;
+            for (let i = 0; i < count; i++) {
+              const dot = document.createElement('button');
+              dot.className = 'carousel-dot';
+              dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+              dot.addEventListener('click', () => goTo(i, true));
+              dotsWrap.appendChild(dot);
+            }
+            updateDots();
+          }
+
+          // Nav
+          document.getElementById('carousel-prev')?.addEventListener('click', () => {
+            goTo(current <= 0 ? maxIndex() : current - 1, true);
+          });
+          document.getElementById('carousel-next')?.addEventListener('click', () => {
+            goTo(current >= maxIndex() ? 0 : current + 1, true);
+          });
+
+          // Pause/resume on hover — also restart dot animation on resume so it's
+          // always in sync with the fresh setTimeout we schedule
+          carousel.addEventListener('mouseenter', pause);
+          carousel.addEventListener('mouseleave', () => {
+            activateDot(dotsWrap.querySelectorAll('.carousel-dot')[current]);
+            scheduleNext();
+          });
+
+          // Touch swipe
+          let touchX = 0;
+          carousel.addEventListener('touchstart', (e) => { touchX = e.touches[0].clientX; }, { passive: true });
+          carousel.addEventListener('touchend', (e) => {
+            const dx = e.changedTouches[0].clientX - touchX;
+            if (Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1, true);
+          }, { passive: true });
+
+          // Resize
+          let resizeTO: ReturnType<typeof setTimeout>;
+          window.addEventListener('resize', () => {
+            clearTimeout(resizeTO);
+            resizeTO = setTimeout(() => {
+              buildDots();
+              translate(Math.min(current, maxIndex()));
+            }, 150);
+          });
+
+          buildDots();
+          scheduleNext();
+        })();
+      </script>
+    </div>
+  </section>
+
+  <!-- ── Platforms We Power ────────────────────────────── -->
+  <div style="border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container" style="padding-block: 1.5rem;">
+      <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
+        <div class="section-label" style="margin-bottom: 0;">Platforms we power</div>
+        <a href="/applications" class="btn btn-ghost" style="font-size: 0.78rem;">All applications →</a>
+      </div>
+    </div>
+    <div class="vehicles-band">
+      {vehicles.map(({ name, img }) => (
+        <div class="vehicle-item">
+          <img src={img} alt={name} loading="lazy" />
+          <span class="vehicle-item-label">{name}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- ── Applications ──────────────────────────────────── -->
+  <section class="section" style="background: var(--surface); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div class="section-label">02 / Applications</div>
+      <h2 style="margin-bottom: 2.5rem;">Air · Sea · Land · Space</h2>
+
+      <div class="application-grid">
+        {applications.map(({ domain, desc, img }) => (
+          <div class="application-card">
+            <img src={img} alt={domain} loading="lazy" />
+            <div class="application-card-overlay">
+              <div style="font-family: var(--font-display); font-size: clamp(1.3rem, 1rem + 1.2vw, 2rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1; color: var(--amber); margin-bottom: 0.5rem;">{domain}</div>
+              <p style="font-size: 0.78rem; color: var(--ink-2); line-height: 1.55; max-width: 28ch;">{desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Schematics ─────────────────────────────────────── -->
+  <div class="schematic-band">
+    <div class="schematic-panel">
+      <div class="schematic-panel-text">
+        <div class="section-label">Aircraft Systems</div>
+        <p style="font-size: 0.875rem;">From motor controllers to flight termination, Allocortech supplies complete power and avionics stacks for fixed-wing and rotary-wing platforms.</p>
+      </div>
+      <div class="schematic-hotspot-wrap">
+        <img src="/images/schematics/aircraft-schematic.webp" alt="Aircraft system schematic" class="schematic-img" loading="lazy" />
+
+        <!-- Flight Controllers — nose -->
+        <div class="hotspot-btn" style="left: 16%; top: 42%;">
+          <span class="hotspot-plus"></span>
+          <div class="hotspot-tooltip tip-right">
+            <img src="/images/products/blueprint/atlas-bp.webp" alt="Atlas Flight Controller" class="hotspot-tooltip-img" />
+            <div class="hotspot-tooltip-body">
+              <div class="hotspot-tooltip-label">Flight Controllers</div>
+              <a href="/contact" class="hotspot-tooltip-link">Contact us →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Power / Comms Distribution — center fuselage -->
+        <div class="hotspot-btn" style="left: 42%; top: 35%;">
+          <span class="hotspot-plus"></span>
+          <div class="hotspot-tooltip">
+            <img src="/images/products/blueprint/clio-bp.webp" alt="Clio Series B" class="hotspot-tooltip-img" />
+            <div class="hotspot-tooltip-body">
+              <div class="hotspot-tooltip-label">Power/Comms Distribution</div>
+              <a href="/contact" class="hotspot-tooltip-link">Contact us →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Motor Controllers — wing nacelle -->
+        <div class="hotspot-btn" style="left: 63%; top: 20%;">
+          <span class="hotspot-plus"></span>
+          <div class="hotspot-tooltip">
+            <img src="/images/products/blueprint/taurus-bp.webp" alt="Taurus Motor Controller" class="hotspot-tooltip-img" />
+            <div class="hotspot-tooltip-body">
+              <div class="hotspot-tooltip-label">Motor Controllers</div>
+              <a href="/contact" class="hotspot-tooltip-link">Contact us →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Smart Batteries & Chargers — fuselage belly -->
+        <div class="hotspot-btn" style="left: 50%; top: 62%;">
+          <span class="hotspot-plus"></span>
+          <div class="hotspot-tooltip">
+            <img src="/images/products/blueprint/lohner-bp.webp" alt="Lohner Battery" class="hotspot-tooltip-img" />
+            <div class="hotspot-tooltip-body">
+              <div class="hotspot-tooltip-label">Smart Batteries & Chargers</div>
+              <a href="/contact" class="hotspot-tooltip-link">Contact us →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Power Distribution & UPS — rear fuselage -->
+        <div class="hotspot-btn" style="left: 74%; top: 48%;">
+          <span class="hotspot-plus"></span>
+          <div class="hotspot-tooltip tip-left">
+            <img src="/images/products/blueprint/mariner-bp.webp" alt="Mariner VLT" class="hotspot-tooltip-img" />
+            <div class="hotspot-tooltip-body">
+              <div class="hotspot-tooltip-label">Power Distribution & UPS</div>
+              <a href="/contact" class="hotspot-tooltip-link">Contact us →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mission Termination — tail -->
+        <div class="hotspot-btn" style="left: 87%; top: 34%;">
+          <span class="hotspot-plus"></span>
+          <div class="hotspot-tooltip tip-left">
+            <img src="/images/products/blueprint/comet-bp.webp" alt="Comet FTS" class="hotspot-tooltip-img" />
+            <div class="hotspot-tooltip-body">
+              <div class="hotspot-tooltip-label">Mission Termination</div>
+              <a href="/contact" class="hotspot-tooltip-link">Contact us →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="schematic-panel">
+      <div class="schematic-panel-text">
+        <div class="section-label">Maritime Systems</div>
+        <p style="font-size: 0.875rem;">Marinized power distribution, motor control, and C3 hubs for electric hydrofoils, surface vessels, and uncrewed maritime systems.</p>
+      </div>
+      <div class="schematic-hotspot-wrap">
+        <img src="/images/schematics/boat-schematic.webp" alt="Maritime system schematic" class="schematic-img" loading="lazy" />
+
+        <!-- Power/Comms Distribution — center hull -->
+        <div class="hotspot-btn" style="left: 38%; top: 38%;">
+          <span class="hotspot-plus"></span>
+          <div class="hotspot-tooltip tip-right">
+            <img src="/images/products/blueprint/dauphine-bp.webp" alt="Dauphine" class="hotspot-tooltip-img" />
+            <div class="hotspot-tooltip-body">
+              <div class="hotspot-tooltip-label">Power/Comms Distribution</div>
+              <a href="/contact" class="hotspot-tooltip-link">Contact us →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vehicle control — bow -->
+        <div class="hotspot-btn" style="left: 16%; top: 44%;">
+          <span class="hotspot-plus"></span>
+          <div class="hotspot-tooltip tip-right">
+            <img src="/images/products/blueprint/atlas-bp.webp" alt="Atlas" class="hotspot-tooltip-img" />
+            <div class="hotspot-tooltip-body">
+              <div class="hotspot-tooltip-label">Vehicle Control</div>
+              <a href="/contact" class="hotspot-tooltip-link">Contact us →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Motor control — stern drive -->
+        <div class="hotspot-btn" style="left: 80%; top: 55%;">
+          <span class="hotspot-plus"></span>
+          <div class="hotspot-tooltip tip-left" style="width: 200px;">
+            <div style="display: flex; gap: 2px;">
+              <img src="/images/products/blueprint/taurus-bp-2.webp" alt="Taurus AE" class="hotspot-tooltip-img" style="width: 50%;" />
+              <img src="/images/products/blueprint/taurus-bp-3.webp" alt="Taurus AEX" class="hotspot-tooltip-img" style="width: 50%;" />
+            </div>
+            <div class="hotspot-tooltip-body">
+              <div class="hotspot-tooltip-label">Motor Control</div>
+              <a href="/contact" class="hotspot-tooltip-link">Contact us →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mission Termination — antenna/mast -->
+        <div class="hotspot-btn" style="left: 57%; top: 24%;">
+          <span class="hotspot-plus"></span>
+          <div class="hotspot-tooltip">
+            <img src="/images/products/blueprint/comet-bp.webp" alt="Comet FTS" class="hotspot-tooltip-img" />
+            <div class="hotspot-tooltip-body">
+              <div class="hotspot-tooltip-label">Mission Termination</div>
+              <a href="/contact" class="hotspot-tooltip-link">Contact us →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Differentiators ───────────────────────────────── -->
+  <section class="section" style="position: relative; overflow: hidden;">
+    <img src="/images/hero/section-bg.png" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.035; pointer-events: none;" />
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;">
+
+        <div>
+          <div class="section-label">03 / Why Allocortech</div>
+          <h2 style="margin-bottom: 1.5rem;">Small team.<br>Serious hardware.</h2>
+          <p class="lead" style="max-width: 42ch; margin-bottom: 2rem;">
+            Founded in 2018 by avionics engineers who saw what the UAS and eVTOL markets needed but weren't getting from legacy suppliers.
+          </p>
+          <a href="/about" class="btn btn-outline">About Allocortech</a>
+        </div>
+
+        <div>
+          <div class="pillar">
+            <span class="pillar-num">01</span>
+            <div>
+              <h4 style="margin-bottom: 0.5rem;">Quality of Solutions</h4>
+              <p style="font-size: 0.875rem; color: var(--ink-2);">Vast experience in power electronics. High-quality subcomponents with high MTBF values. No shortcuts on components that fly.</p>
+            </div>
+          </div>
+          <div class="pillar">
+            <span class="pillar-num">02</span>
+            <div>
+              <h4 style="margin-bottom: 0.5rem;">Quick Lead Times</h4>
+              <p style="font-size: 0.875rem; color: var(--ink-2);">New or custom designs from existing architectures in weeks, not months. MOTS solutions in 8–12 weeks. We move at startup pace.</p>
+            </div>
+          </div>
+          <div class="pillar" style="border-bottom: none; padding-bottom: 0;">
+            <span class="pillar-num">03</span>
+            <div>
+              <h4 style="margin-bottom: 0.5rem;">Unmatched Support</h4>
+              <p style="font-size: 0.875rem; color: var(--ink-2);">Support at a moment's notice. Engineering changes treated as normal, not as contract resets. We are an extension of your engineering team.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Testimonials ──────────────────────────────────── -->
+  <section class="section-sm" style="position: relative; overflow: hidden; background: var(--surface); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+    <img src="/images/team/testimonial-bg.webp" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.04; pointer-events: none;" />
+    <div class="container" style="position: relative; z-index: 1;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: stretch;">
+        <blockquote class="testimonial">
+          <p class="testimonial-quote">
+            "Using Allocortech's avionics hardware and accompanying software stack, we were able to get our prototype electric hydrofoil boat 'flying' in less time than I've ever seen a similarly complex project take flight."
+          </p>
+          <footer style="display: flex; align-items: center; gap: 0.75rem;">
+            <img src="/images/team/kenny-jensen-avatar.webp" alt="Dr. Kenny Jensen" loading="lazy" style="width: 2.5rem; height: 2.5rem; border-radius: 50%; object-fit: cover; filter: grayscale(0.2); flex-shrink: 0;" />
+            <div>
+              <div class="testimonial-author">Dr. Kenny Jensen</div>
+              <div class="testimonial-role">Lead Flight Control Engineer, Navier</div>
+            </div>
+          </footer>
+        </blockquote>
+        <blockquote class="testimonial">
+          <p class="testimonial-quote">
+            "Allocortech has been an ideal partner in development of our advanced UAS platforms. They uniquely act as an extension to your existing engineering enterprise and ensure that their products meet your needs. The Allocortech team is both technically excellent and agile enough to provide bespoke solutions for fast-paced programs."
+          </p>
+          <footer style="display: flex; align-items: center; gap: 0.75rem;">
+            <img src="/images/team/jordan-french.webp" alt="Jordan French" loading="lazy" style="width: 2.5rem; height: 2.5rem; border-radius: 50%; object-fit: cover; filter: grayscale(0.2); flex-shrink: 0;" />
+            <div>
+              <div class="testimonial-author">Jordan French, PhD</div>
+              <div class="testimonial-role">Valiant Program Manager, Griffon Aerospace</div>
+            </div>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Partners ─────────────────────────────────────── -->
+  <section style="border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); padding-block: clamp(2rem, 4vw, 3rem);">
+    <div class="container">
+      <div class="section-label" style="margin-bottom: 1.75rem;">Trusted by leading aerospace and defense programs</div>
+      <div class="partner-grid">
+        {partners.map(({ name, logo }) => (
+          <img src={logo} alt={name} class="partner-logo" loading="lazy" title={name} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer CTA ────────────────────────────────────── -->
+  <section style="background: var(--surface); border-top: 1px solid var(--border-subtle); padding-block: clamp(4rem, 8vw, 8rem);">
+    <div class="container" style="text-align: center; max-width: 700px; margin-inline: auto;">
+      <div class="section-label" style="justify-content: center;">Ready to build?</div>
+      <h2 style="margin-bottom: 1.25rem;">Engineering<br>the future<br>of electric mobility, today.</h2>
+      <p class="lead" style="margin-inline: auto; margin-bottom: 2.5rem; max-width: 48ch;">
+        Whether you need COTS hardware tomorrow or a fully custom power architecture, our team is ready to talk.
+      </p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="/contact" class="btn btn-primary">Talk to Sales</a>
+        <a href="/capabilities" class="btn btn-ghost">Our Capabilities</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

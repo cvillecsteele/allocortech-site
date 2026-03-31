@@ -1,0 +1,244 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const products = await getCollection('products');
+  return products.map((product) => ({
+    params: { slug: product.id },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const { Content } = await render(product);
+
+const { title, tagline, category, keySpecs, features, documents, partNumbers } = product.data;
+
+// Product image lookup
+const productImages: Record<string, { hero: string; gallery: string[] }> = {
+  'taurus-400': {
+    hero: '/images/products/taurus-400-nobg.webp',
+    gallery: [
+      '/images/products/taurus-400-front.webp',
+      '/images/products/taurus-400-side.webp',
+      '/images/products/taurus-400-top.webp',
+      '/images/products/taurus-400-es1.webp',
+      '/images/products/taurus-400-nobg-2.webp',
+    ],
+  },
+  'taurus-ae': {
+    hero: '/images/products/taurus-ae.webp',
+    gallery: ['/images/products/taurus-ae-2.webp', '/images/products/taurus-ae-3.webp'],
+  },
+  'taurus-aex': {
+    hero: '/images/products/taurus-aex.webp',
+    gallery: ['/images/products/taurus-aex-2.webp', '/images/products/taurus-aex-3.webp', '/images/products/taurus-aex-4.webp'],
+  },
+  'taurus-c60': { hero: '/images/products/taurus-c60.webp', gallery: [] },
+  'clio': {
+    hero: '/images/products/clio.webp',
+    gallery: ['/images/products/clio-2.webp', '/images/products/clio-3.webp', '/images/products/clio-4.webp'],
+  },
+  'comet-fts': {
+    hero: '/images/products/comet-fts.webp',
+    gallery: ['/images/products/comet-fts-2.webp', '/images/products/comet-fts-3.webp', '/images/products/comet-fts-4.webp', '/images/products/comet-fts-voting.webp'],
+  },
+  'atlas': {
+    hero: '/images/products/atlas.webp',
+    gallery: ['/images/products/atlas-2.webp'],
+  },
+  'dauphine': { hero: '/images/products/dauphine.webp', gallery: [] },
+  'lohner': {
+    hero: '/images/products/lohner.webp',
+    gallery: ['/images/products/lohner-2.webp'],
+  },
+  'hornet': { hero: '/images/products/hornet.webp', gallery: [] },
+};
+const imgs = productImages[product.id] ?? { hero: null, gallery: [] };
+
+// Related products
+const allProducts = await getCollection('products');
+const related = allProducts
+  .filter(p => p.id !== product.id && p.data.category === category)
+  .slice(0, 3);
+---
+
+<BaseLayout
+  title={title}
+  description={tagline}
+>
+  <!-- Back -->
+  <div style="padding-top: 80px; border-bottom: 1px solid var(--border-subtle);">
+    <div class="container" style="padding-block: 1rem;">
+      <a href="/products" style="font-size: 0.8rem; color: var(--ink-3); display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.15s;"
+        onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--ink-3)'">
+        ← All Products
+      </a>
+    </div>
+  </div>
+
+  <!-- Product Hero -->
+  <div style="padding-block: clamp(3rem, 6vw, 6rem); border-bottom: 1px solid var(--border-subtle);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;">
+
+        <div>
+          <div class="section-label" style="margin-bottom: 1rem;">{category}</div>
+          <h1 style="margin-bottom: 1rem;">{title}</h1>
+          <p class="lead" style="max-width: 48ch; margin-bottom: 2rem;">{tagline}</p>
+          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <a href="/contact" class="btn btn-primary">Request Quote</a>
+            <a href="/contact" class="btn btn-ghost">Contact Sales</a>
+          </div>
+        </div>
+
+        <!-- Product Image + Key Specs -->
+        <div>
+          {imgs.hero && (
+            <div>
+              <div class="product-hero-img-wrap">
+                <img
+                  id="product-main-img"
+                  src={imgs.hero}
+                  alt={title}
+                  loading="eager"
+                  fetchpriority="high"
+                />
+              </div>
+              {imgs.gallery.length > 0 && (
+                <div class="product-thumb-strip">
+                  <img
+                    src={imgs.hero}
+                    alt={title}
+                    class="product-thumb active"
+                    onclick="document.getElementById('product-main-img').src=this.src; document.querySelectorAll('.product-thumb').forEach(t=>t.classList.remove('active')); this.classList.add('active');"
+                  />
+                  {imgs.gallery.map((g) => (
+                    <img
+                      src={g}
+                      alt={title}
+                      class="product-thumb"
+                      onclick="document.getElementById('product-main-img').src=this.src; document.querySelectorAll('.product-thumb').forEach(t=>t.classList.remove('active')); this.classList.add('active');"
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+          <div style={`background: var(--surface); padding: 2rem; border: 1px solid var(--border-subtle);${imgs.hero ? ' margin-top: 1.5rem;' : ''}`}>
+            <div class="section-label" style="margin-bottom: 1.25rem;">Key Specifications</div>
+            <table class="spec-table">
+              {keySpecs.map((spec) => (
+                <tr>
+                  <td>{spec.label}</td>
+                  <td>{spec.value}</td>
+                </tr>
+              ))}
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Main content + features -->
+  <div class="section-sm">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 5rem; align-items: start;">
+
+        <!-- Prose description -->
+        <div>
+          <div class="section-label" style="margin-bottom: 1.5rem;">Overview</div>
+          <div class="prose">
+            <Content />
+          </div>
+        </div>
+
+        <!-- Features sidebar -->
+        <div>
+          <div class="section-label" style="margin-bottom: 1.5rem;">Features</div>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.75rem;">
+            {features.map((feature) => (
+              <li style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.875rem; color: var(--ink-2); line-height: 1.5;">
+                <span style="color: var(--amber); flex-shrink: 0; margin-top: 0.15rem; font-family: var(--font-mono);">·</span>
+                {feature}
+              </li>
+            ))}
+          </ul>
+
+          {documents && documents.length > 0 && (
+            <div style="margin-top: 2.5rem;">
+              <div class="section-label" style="margin-bottom: 1.25rem;">Documents</div>
+              <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                {documents.map((doc) => (
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0.75rem; background: var(--surface); border: 1px solid var(--border-subtle); gap: 1rem;">
+                    <span style="font-size: 0.8rem; color: var(--ink-2);">{doc.title}</span>
+                    <span class="tag">{doc.type}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {partNumbers && partNumbers.length > 0 && (
+            <div style="margin-top: 2rem;">
+              <div class="section-label" style="margin-bottom: 1rem;">Part Numbers</div>
+              {partNumbers.map((pn) => (
+                <p style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-2); margin-bottom: 0.4rem;">{pn}</p>
+              ))}
+            </div>
+          )}
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Products -->
+  {related.length > 0 && (
+    <section style="border-top: 1px solid var(--border-subtle); padding-block: clamp(3rem, 5vw, 5rem);">
+      <div class="container">
+        <div class="section-label" style="margin-bottom: 2rem;">Related Products</div>
+        <div class="product-grid">
+          {related.map((p) => (
+            <a href={`/products/${p.id}`} class="product-card">
+              {productImages[p.id]?.hero && (
+                <div class="product-card-img-wrap">
+                  <img src={productImages[p.id].hero} alt={p.data.title} class="product-card-img" loading="lazy" />
+                </div>
+              )}
+              <div class="product-card-category">{p.data.category}</div>
+              <div class="product-card-name">{p.data.title}</div>
+              <p class="product-card-tagline">{p.data.tagline}</p>
+              <div class="product-card-specs">
+                {p.data.keySpecs.slice(0, 3).map((spec) => (
+                  <div class="product-card-spec">
+                    <span class="product-card-spec-label">{spec.label}</span>
+                    <span class="product-card-spec-value">{spec.value}</span>
+                  </div>
+                ))}
+              </div>
+              <div class="product-card-link">View specs →</div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- CTA -->
+  <section style="background: var(--surface); border-top: 1px solid var(--border-subtle); padding-block: clamp(3rem, 5vw, 5rem);">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+      <div>
+        <h3 style="margin-bottom: 0.5rem;">Ready to integrate {title}?</h3>
+        <p style="color: var(--ink-2); font-size: 0.9rem;">Our team can answer technical questions, provide integration support, or quote a MOTS variant for your platform.</p>
+      </div>
+      <div style="display: flex; gap: 0.75rem; flex-shrink: 0;">
+        <a href="/contact" class="btn btn-primary">Talk to Sales</a>
+        <a href="/capabilities" class="btn btn-ghost">Our Capabilities</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
