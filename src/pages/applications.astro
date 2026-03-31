@@ -71,7 +71,7 @@ const applications = [
   <!-- Application Cards -->
   <section class="section">
     <div class="container">
-      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border: 1px solid var(--border-subtle);">
+      <div class="applications-grid">
         {applications.map((app, i) => (
           <div id={app.id} style={`padding: 2.5rem; border-right: ${i % 2 === 0 ? '1px' : '0'} solid var(--border-subtle); border-bottom: ${i < applications.length - 2 ? '1px' : '0'} solid var(--border-subtle);`}>
             <div style="font-family: var(--font-mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--amber); margin-bottom: 0.75rem;">{app.short}</div>
