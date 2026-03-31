@@ -793,7 +793,7 @@ details .faq-answer {
 
 .footer-brand p {
   font-size: 0.875rem;
-  color: var(--ink-2);
+  color: #fff;
   margin-top: 0.75rem;
   max-width: 28ch;
   line-height: 1.6;
@@ -1061,9 +1061,10 @@ textarea { resize: vertical; min-height: 120px; }
 .footer-logo-img {
   height: 1.75rem;
   width: auto;
-  opacity: 0.8;
+  opacity: 0.9;
   margin-bottom: 0.75rem;
   display: block;
+  filter: brightness(0) invert(1);
 }
 
 /* Hero background video */
