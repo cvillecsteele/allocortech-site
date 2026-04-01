@@ -569,8 +569,8 @@ const stats = [
     <div class="container">
       <div class="section-label" style="margin-bottom: 1.75rem;">Trusted by leading aerospace and defense programs</div>
       <div class="partner-grid">
-        {partners.map(({ name, logo }) => (
-          <img src={logo} alt={name} class="partner-logo" loading="lazy" title={name} />
+        {partners.map(({ name, logo, invert }) => (
+          <img src={logo} alt={name} class="partner-logo" loading="lazy" title={name} data-invert={invert || undefined} />
         ))}
       </div>
     </div>

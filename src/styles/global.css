@@ -1485,14 +1485,17 @@ textarea { resize: vertical; min-height: 120px; }
 .partner-logo {
   height: 1.6rem;
   width: auto;
-  filter: grayscale(1) brightness(0.7) invert(1);
-  opacity: 0.35;
-  transition: filter 0.25s, opacity 0.25s;
+  mix-blend-mode: screen;
+  opacity: 0.55;
+  transition: opacity 0.25s;
+}
+
+.partner-logo[data-invert] {
+  filter: invert(1);
 }
 
 .partner-logo:hover {
-  filter: grayscale(0.1) brightness(0.9) invert(0);
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 /* Vehicles band */
